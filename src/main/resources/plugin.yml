@@ -1,0 +1,30 @@
+name: ${project.name}
+version: ${project.version}
+main: org.bitbucket.ucchy.vl.VoteLogger
+description: Vote Logger Plugin
+author: ucchy
+depends: [Votifier]
+
+commands:
+  votelogger:
+    description: VoteLoggerプラグインのコマンド
+    aliases: [vl]
+    usage: |
+           /<command> log [日数] - 直近の投票ログを参照します。日数を省略すると7日分表示します。
+           /<command> stats - 投票記録数集計を表示します。
+    permission: votelogger.command
+    permission-message: 'コマンドを実行する権限 <permission> がありません。'
+
+permissions:
+  votelogger.command:
+    description: voteloggerコマンドの実行権限
+    default: op
+  votelogger.notify:
+    description: 投票の通知を受け取る権限
+    default: op
+  'votelogger.*':
+    description: VoteLoggerの全ての権限
+    children:
+      votelogger.command: true
+      votelogger.notify: true
+
