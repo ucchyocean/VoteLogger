@@ -1,0 +1,15 @@
+# ${project.name} v${project.version}
+# @author     ucchy
+# @license    LGPLv3
+# @copyright  Copyright ucchy 2014
+
+
+# 投票通知を受け取った時に、通知メッセージを流すかどうかを設定します。
+# true に設定すると、"votelogger.notify" 権限を持っているプレイヤーの画面と、
+# サーバーコンソールに、通知を送信します。
+enableNotification: true
+
+# 通知メッセージです。
+# カラーコード（&0～&f）と、プレイヤー名キーワード %player が利用可能です。
+# enableNotification設定がtrueになっていないと、本設定は無意味です。
+notificationMessage: '&e[投票通知]&f%playerさんがサーバーに投票しました。'

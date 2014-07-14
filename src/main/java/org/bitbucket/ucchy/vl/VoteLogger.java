@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -42,6 +41,7 @@ public class VoteLogger extends JavaPlugin implements Listener {
 
     private FileLogger fileLogger;
     private HashMap<String, Integer> stats;
+    private VoteLoggerConfig config;
 
     /**
      * プラグインが有効化されたときに呼び出されるメソッド
@@ -53,6 +53,7 @@ public class VoteLogger extends JavaPlugin implements Listener {
         // 各種初期化
         instance = this;
         dformat = new SimpleDateFormat("yyyy-MM-dd");
+        config = new VoteLoggerConfig();
 
         // データフォルダが存在しないなら、この時点で作成しておく
         File dir = getDataFolder();
@@ -96,10 +97,11 @@ public class VoteLogger extends JavaPlugin implements Listener {
         makeStats();
 
         // 投票を通知する
-        String message =
-                ChatColor.YELLOW + "[投票通知]" +
-                ChatColor.WHITE + vote.getUsername() + "さんがサーバーに投票しました。";
-        Bukkit.broadcast(message, NOTIFY_PERMISSION);
+        if ( config.isEnableNotification() ) {
+            String message = Utility.replaceColorCode(config.getNotificationMessage());
+            message = message.replace("%player", vote.getUsername());
+            Bukkit.broadcast(message, NOTIFY_PERMISSION);
+        }
     }
 
     /**
@@ -147,6 +149,13 @@ public class VoteLogger extends JavaPlugin implements Listener {
 
             return true;
 
+        } else if ( args[0].equalsIgnoreCase("reload") ) {
+
+            config.reloadConfig();
+            sender.sendMessage("[VoteLogger]config.ymlを再読み込みしました。");
+
+            return true;
+
         }
 
         return false;
@@ -190,7 +199,15 @@ public class VoteLogger extends JavaPlugin implements Listener {
      * インスタンスを返す
      * @return インスタンス
      */
-    public static VoteLogger getInstance() {
+    protected static VoteLogger getInstance() {
         return instance;
+    }
+
+    /**
+     * このプラグインのJarファイル自身を示すFileクラスを返す。
+     * @return Jarファイル
+     */
+    protected static File getPluginJarFile() {
+        return instance.getFile();
     }
 }
