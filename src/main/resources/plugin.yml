@@ -11,7 +11,7 @@ commands:
     aliases: [vl]
     usage: |
            /<command> log [日数] - 直近の投票ログを参照します。日数を省略すると7日分表示します。
-           /<command> stats - 投票記録数集計を表示します。
+           /<command> stats - 投票記録数の日付ごとの集計を表示します。
            /<command> reload - config.ymlを再読み込みします。
     permission: votelogger.command
     permission-message: 'コマンドを実行する権限 <permission> がありません。'

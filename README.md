@@ -27,6 +27,19 @@ enableNotification: true
 notificationMessage: '&e[投票通知]&f%playerさんがサーバーに投票しました。'
 </pre>
 
+権限
+----
+- `votelogger.command` - voteloggerコマンドの実行権限
+- `votelogger.notify` - 投票の通知を受け取る権限
+- `voteloagger.*` - 上記の votelogger.command と votelogger.notify の両方を含む権限
+
+コマンド
+--------
+コマンドは `/votelogger` です。省略形 `/vl` を利用することも可能です。
+- `/votelogger log [日数]` - 直近の投票ログを参照します。日数を省略すると7日分表示します。
+- `/votelogger stats` - 投票記録数の日付ごとの集計を表示します。
+- `/votelogger reload` - config.ymlを再読み込みします。
+
 ログファイル
 ------------
 - `plugins/VoteLogger/votes.csv` - 投票記録ログファイルです。
