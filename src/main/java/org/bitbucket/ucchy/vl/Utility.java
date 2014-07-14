@@ -25,8 +25,6 @@ import org.bukkit.ChatColor;
  */
 public class Utility {
 
-    private static Boolean isCB178orLaterCache;
-
     /**
      * jarファイルの中に格納されているファイルを、jarファイルの外にコピーするメソッド
      * @param jarFile jarファイル
