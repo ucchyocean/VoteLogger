@@ -31,7 +31,7 @@ notificationMessage: '&e[投票通知]&f%playerさんがサーバーに投票し
 ----
 - `votelogger.command` - voteloggerコマンドの実行権限
 - `votelogger.notify` - 投票の通知を受け取る権限
-- `voteloagger.*` - 上記の votelogger.command と votelogger.notify の両方を含む権限
+- `votelogger.*` - 上記の votelogger.command と votelogger.notify の両方を含む権限
 
 コマンド
 --------
